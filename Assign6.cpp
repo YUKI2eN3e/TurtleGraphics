@@ -55,7 +55,8 @@ int main()
 {
    // Declarations
 
-   int cmds[] = { 5,5,4,5,9,2,5,12,1,3,5,1,4,2,5,1,1,3,5,1,2,5,2,1,3,5,1,4,2,5,1,1,3,5,1,2,5,11,3,5,5,1,3,5,12,3,5,5,5,1,4,2,5,1,1,3,5,1,2,5,2,1,3,5,1,4,2,5,1,1,3,5,1,2,5,11,3,5,5,1,5,5,3,5,22,2,5,10,1,3,5,1,4,2,5,1,1,3,5,1,2,5,7,1,3,5,1,4,2,5,1,1,3,5,1,2,5,10,1,3,5,1,4,2,5,1,1,3,5,1,2,5,7,1,3,5,1,4,2,5,1,1,3,5,19,2,5,12,1,3,5,1,4,2,5,1,1,3,5,1,2,5,2,1,3,5,1,4,2,5,1,1,3,5,1,2,5,11,3,5,5,1,3,5,12,3,5,5,5,1,4,2,5,1,1,3,5,1,2,5,2,1,3,5,1,4,2,5,1,1,3,5,1,2,5,11,3,5,5,1,6,9 }; // finish off
+   //int cmds[] = { 5,5,4,5,9,2,5,12,1,3,5,1,4,2,5,1,1,3,5,1,2,5,2,1,3,5,1,4,2,5,1,1,3,5,1,2,5,11,3,5,5,1,3,5,12,3,5,5,5,1,4,2,5,1,1,3,5,1,2,5,2,1,3,5,1,4,2,5,1,1,3,5,1,2,5,11,3,5,5,1,5,5,3,5,22,2,5,10,1,3,5,1,4,2,5,1,1,3,5,1,2,5,7,1,3,5,1,4,2,5,1,1,3,5,1,2,5,10,1,3,5,1,4,2,5,1,1,3,5,1,2,5,7,1,3,5,1,4,2,5,1,1,3,5,19,2,5,12,1,3,5,1,4,2,5,1,1,3,5,1,2,5,2,1,3,5,1,4,2,5,1,1,3,5,1,2,5,11,3,5,5,1,3,5,12,3,5,5,5,1,4,2,5,1,1,3,5,1,2,5,2,1,3,5,1,4,2,5,1,1,3,5,1,2,5,11,3,5,5,1,6,9 }; // finish off
+   int cmds[] = {5,5,4,5,9,2,5,12,1,3,5,1,4,2,5,1,1,3,5,1,2,5,2,1,3,5,1,4,2,5,1,1,3,5,1,2,5,11,3,5,5,1,3,5,12,3,5,5,5,1,4,2,5,1,1,3,5,1,2,5,2,1,3,5,1,4,2,5,1,1,3,5,1,2,5,11,3,5,5,1,5,5,3,5,22,2,5,10,1,3,5,1,4,2,5,1,1,3,5,1,2,5,7,1,3,5,1,4,2,5,1,1,3,5,1,2,5,10,1,3,5,1,4,2,5,1,1,3,5,1,2,5,7,1,3,5,1,4,2,5,1,1,3,5,19,2,5,12,1,3,5,1,4,2,5,1,1,3,5,1,2,5,2,1,3,5,1,4,2,5,1,1,3,5,1,2,5,11,3,5,5,1,3,5,12,3,5,5,5,1,4,2,5,1,1,3,5,1,2,5,2,1,3,5,1,4,2,5,1,1,3,5,1,2,5,11,3,5,5,1,5,100,2,4,5,100,4,5,100,4,5,100,4,5,100,4,5,100,1,6,9};
 
    for (int r = 0; r <= NROWS; r++)
 	{
@@ -65,7 +66,7 @@ int main()
 		}
 	}
 	pen_pos = STARTING_PEN_POSITION;
-	pen_dir = STARTING_DIRECTION;  // create a TurtleGraphics object
+	pen_dir = STARTING_DIRECTION;
 
    c_col = 0;
    c_row = 0;
@@ -89,30 +90,23 @@ void processTurtleMoves(const int commands[])
 		switch (com)
 		{
 		case PEN_UP:
-			//cerr << "PEN_UP\n";
 			pen_pos = UP;
 			break;
 		case PEN_DWN:
-			//cerr << "PEN_DWN\n";
 			pen_pos = DOWN;
 			break;
 		case TURN_RIGHT:
-			//cerr << "TURN_RIGHT\n";
 			pen_dir = turnRight();
 			break;
 		case TURN_LEFT:
-			//cerr << "TURN_LEFT\n";
 			pen_dir = turnLeft();
 			break;
 		case MOVE:
-			//cerr << "MOVE\n";
 			++i;
 			dist = commands[i];
-			//drawLine(dist, (bool **)m_Floor, NROWS, NCOLS);
 			drawLine(dist);
 			break;
 		case DISPLAY:
-			//cerr << "DISPLAY\n";
 			displayFloor();
 			break;
 		default:
@@ -179,7 +173,6 @@ void drawLine(int dist)
                m_Floor[c_row][c_col] = FILL;
             }
             c_row--;
-				//cerr << "Drawn at Row: " << c_row << " Col: " << c_col << "\n";
 			}
 			break;
 		case EAST:
@@ -190,7 +183,6 @@ void drawLine(int dist)
                m_Floor[c_row][c_col] = FILL;
             }
 				c_col++;
-				//cerr << "Drawn at Row: " << c_row << " Col: " << c_col << "\n";
 			}
 			break;
 		case SOUTH:
@@ -201,7 +193,6 @@ void drawLine(int dist)
                m_Floor[c_row][c_col] = FILL;
             }
 				c_row++;
-				//cerr << "Drawn at Row: " << c_row << " Col: " << c_col << "\n";
 			}
 			break;
 		case WEST:
@@ -212,7 +203,6 @@ void drawLine(int dist)
                m_Floor[c_row][c_col] = FILL;
             }
 				c_col--;
-				//cerr << "Drawn at Row: " << c_row << " Col: " << c_col << "\n";
 			}
 			break;
 		default:
